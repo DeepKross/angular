@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-card',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-card.component.css']
 })
 export class CreateCardComponent {
+  form = new FormGroup({
+    firstName: new FormControl<string>('',[
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    lastName: new FormControl<string>('',[
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    email: new FormControl<string>('',
+      [Validators.required, Validators.email]),
+    phone: new FormControl<string>('',
+      [Validators.required, Validators.minLength(10)]),
+  })
 
+  submit(){
+    console.log("submit");
+  }
 }
