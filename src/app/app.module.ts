@@ -7,7 +7,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { CreateCardComponent } from './components/create-card/create-card.component';
-import { FocusDirective } from './directives/focus.directive';
 
 @NgModule({
   declarations: [
@@ -15,8 +14,7 @@ import { FocusDirective } from './directives/focus.directive';
     CardComponent,
     FilterCardsPipe,
     ModalComponent,
-    CreateCardComponent,
-    FocusDirective
+    CreateCardComponent
   ],
   imports: [
     BrowserModule,
