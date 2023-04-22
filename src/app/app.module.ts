@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './components/card/card.component';
 import {FormsModule} from "@angular/forms";
 import { FilterCardsPipe } from './pipes/filter-cards.pipe';
+import { ModalComponent } from './components/modal/modal.component';
+import { CreateCardComponent } from './components/create-card/create-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    FilterCardsPipe
+    FilterCardsPipe,
+    ModalComponent,
+    CreateCardComponent
   ],
   imports: [
     BrowserModule,
