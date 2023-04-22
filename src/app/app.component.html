@@ -11,7 +11,7 @@
   </div>
 
 <app-card
-  *ngFor="let card of cards"
+  *ngFor="let card of cards | filterCards:filtration"
   [card]="card"
 ></app-card>
 </div>

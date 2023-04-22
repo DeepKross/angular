@@ -1,12 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {Card} from "../models/card";
 
 @Pipe({
   name: 'filterCards'
 })
 export class FilterCardsPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(cards: Card[], search: string): Card[]{
+    return cards.filter(p => {
+      return p.firstname.toLowerCase().includes(search.toLowerCase()) ||
+        p.lastname.toLowerCase().includes(search.toLowerCase())
+    })
   }
 
 }
