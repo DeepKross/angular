@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Card} from "./models/card";
+import {cards as data } from "./data/cards";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular';
+  title = 'Angular lecture 1';
+  filtration: string = '';
+  cards: Card[] = data;
 }

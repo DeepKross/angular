@@ -1,5 +1,17 @@
 <div class="max-w-8xl container mx-auto pt-5">
-  <h1 class="font-bold mb-2 text-center text-2xl text-amber-400">Hello Angular</h1>
+  <h1 class="font-bold mb-6 text-center text-6xl text-amber-400"> {{ title | titlecase}}</h1>
 <hr>
-<app-card></app-card>
+
+  <div>
+    <span><input type="text" class="my-2 border py-2 px-4 w-1/6" placeholder="Filter users..."
+    [(ngModel)]="filtration"></span>
+    <span><button class="my-2 mx-4 border rounded-2xl py-2 px-4 w-1/12 bg-yellow-600">Delete</button></span>
+    <span class="my-2 mx-4 py-2 px-4 w-1/12 text-blue-500"> Sort by: </span>
+    <span class="my-2 mx-4 py-2 px-4 w-1/12 text-blue-500"> Select All</span>
+  </div>
+
+<app-card
+  *ngFor="let card of cards"
+  [card]="card"
+></app-card>
 </div>

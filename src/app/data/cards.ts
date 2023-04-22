@@ -14,5 +14,12 @@ export let cards: Card[] = [
     lastname: "Howell",
     email: "erwin@june,org",
     phone: "010-692-6593 x09125",
+},
+{
+    id: 3,
+    firstname: "Clementine",
+    lastname: "Bauch",
+    email: "clement@gaa.com",
+    phone: "1-463-123-4447",
 }
 ];
