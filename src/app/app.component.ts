@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Card} from "./models/card";
-import {cards as data } from "./data/cards";
 import {ModalService} from "./services/modal.service";
+import {CardService} from "./services/card.service";
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,11 @@ import {ModalService} from "./services/modal.service";
 })
 export class AppComponent {
 
-  constructor(public modalService: ModalService) {
+  constructor(public modalService: ModalService,
+              public cardService: CardService,
+              ){
   }
   title = 'Angular lecture 1';
   filtration: string = '';
-  cards: Card[] = data;
+  cards: Card[] = this.cardService.getAll();
 }
