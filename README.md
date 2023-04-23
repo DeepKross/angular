@@ -12,4 +12,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Before start
 
-Don`t forget to write `npm install` in your console.
+Don not forget to write `npm install` in your console.
