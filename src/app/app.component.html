@@ -1,20 +1,59 @@
 <div class="max-w-8xl container mx-auto pt-5">
-  <h1 class="font-bold mb-6 text-center text-6xl text-amber-400"> {{ title | titlecase}}</h1>
-<hr>
+  <h1 class="font-bold mb-6 text-center text-6xl text-amber-400">
+    {{ title | titlecase }}
+  </h1>
+  <hr />
 
   <div>
-    <span><input type="text" class="my-2 border py-2 px-4 w-1/6" placeholder="Filter users..."
-    [(ngModel)]="filtration"></span>
-    <span><button class="my-2 mx-4 border rounded-2xl py-2 px-4 w-1/12 bg-yellow-600">Delete</button></span>
-    <span class="my-2 mx-4 py-2 px-4 w-1/12 text-blue-500"> Sort by: </span>
-    <span class="my-2 mx-4 py-2 px-4 w-1/12 text-blue-500"> Select All</span>
-    <span><button class="rounded-full bg-red-700 text-white py-2 px-4 my-2 float-right" (click)="modalService.open()">+</button></span>
+    <span
+      ><input
+        type="text"
+        class="my-2 border py-2 px-4 w-1/6"
+        placeholder="Filter users..."
+        [(ngModel)]="filtration"
+    /></span>
+
+
+    <span class="my-2 mx-4 py-2 px-4 w-1/12 text-blue-500">
+      <select [(ngModel)]="ascOrDesc" (ngModelChange)="sort()"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="asc">Sort by: A-Z</option>
+        <option value="desc">Sort by: Z-A</option>
+      </select>
+    </span>
+
+    <span>
+      <button class="my-2 mx-4 border rounded-2xl py-2 px-4 w-1/12 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-500 ease-in-out"
+      (click)="selectAll()"> Select all</button>
+    </span>
+
+    <span
+    ><button
+      class="my-2 mx-4 border rounded-2xl py-2 px-4 w-1/12 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-500 ease-in-out"
+      (click)="deleteSelected()"
+    >
+        Delete
+      </button>
+    </span>
+
+    <span
+      ><button
+        class="rounded-full bg-red-700 text-white py-2 px-4 my-2 float-right"
+        (click)="modalService.open()"
+      >
+        +
+      </button></span
+    >
   </div>
 
-<app-card
-  *ngFor="let card of cards | filterCards:filtration"
-  [card]="card"
-></app-card>
+  <app-card
+    *ngFor="
+      let card of cards
+        | filterCards : filtration
+        | orderBy : 'firstname' : isDesc
+    "
+    [card]="card"
+  ></app-card>
 
   <app-modal *ngIf="modalService.isVisible$ | async" title="Add new card">
     <app-create-card></app-create-card>

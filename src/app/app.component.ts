@@ -8,7 +8,7 @@ import {CardService} from "./services/card.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
 
   constructor(public modalService: ModalService,
               public cardService: CardService,
@@ -17,4 +17,27 @@ export class AppComponent {
   title = 'Angular lecture 1';
   filtration: string = '';
   cards: Card[] = this.cardService.getAll();
+  isDesc = false;
+  ascOrDesc: "asc" | "desc" = 'asc';
+
+  selectAll(){
+    this.cards.forEach(p => p.selected = true);
+  }
+
+  deleteSelected(){
+    this.cards = this.cards.filter(p => !p.selected);
+  }
+
+  sort(){
+    switch (this.ascOrDesc){
+      case "asc":
+        this.isDesc = false;
+        break;
+      case "desc":
+        this.isDesc = true;
+        break;
+        default:
+          break;
+    }
+  }
 }
