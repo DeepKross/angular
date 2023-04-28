@@ -19,9 +19,13 @@ export class CardService {
   getAll(): Observable<Card[]>{
     return this.http.get<responseCard[]>('https://jsonplaceholder.typicode.com/users')
       .pipe(
-        tap(notMapped => console.log(notMapped)),
+        tap(notMapped => {
+          console.log(notMapped);
+          console.log(this.cards);
+        }),
         map((items: responseCard[]) => items
           .map(card => ({
+            id: card.id as number,
             firstname: card.name.split(" ").shift() as string,
             lastname: card.name.split(" ").slice(1).join(" ") as string,
             email: card.email as string,
@@ -36,6 +40,7 @@ export class CardService {
     return this.http.post<responseCard>('https://jsonplaceholder.typicode.com/users', card)
       .pipe(
         tap(new_card => {this.cards.push({
+          id: new_card.id as number,
           firstname: new_card.name.split(" ").shift() as string,
           lastname: new_card.name.split(" ").slice(1).join(" ") as string,
           email: new_card.email as string,
@@ -45,7 +50,18 @@ export class CardService {
         console.log(this.cards);
         })
       );
+  }
 
+  delete(){
+    this.cards.filter(card => card.selected).forEach(card => {
+      this.http.delete(`https://jsonplaceholder.typicode.com/users/${card.id}`)
+        .subscribe();
+    });
+    this.cards = this.cards.filter(card => !card.selected);
+  }
+
+  selectAll() {
+    this.cards.forEach(p => p.selected = true);
   }
 
 }
