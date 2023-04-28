@@ -5,6 +5,10 @@
   placeholder="First Name"
   formControlName="firstName"
   >
+  <div *ngIf="form.invalid" class="text-red-500">
+    <div *ngIf="form.controls.firstName.errors?.required">First name is required</div>
+    <div *ngIf="form.controls.firstName.errors?.minlength">First name must be at least 2 characters</div>
+  </div>
 
   <input
     type="text"
@@ -12,6 +16,10 @@
     placeholder="Last Name"
     formControlName="lastName"
   >
+  <div *ngIf="form.invalid" class="text-red-500">
+    <div *ngIf="form.controls.lastName.errors?.required">Last name is required</div>
+    <div *ngIf="form.controls.lastName.errors?.minlength">Last name must be at least 2 characters</div>
+  </div>
 
   <input
     type="text"
@@ -20,6 +28,11 @@
     formControlName="email"
   >
 
+  <div *ngIf="form.invalid" class="text-red-500">
+    <div *ngIf="form.controls.email.errors?.required">Email is required</div>
+    <div *ngIf="form.controls.email.errors?.email">Email is invalid</div>
+  </div>
+
   <input
     type="text"
     class="border w-full py-2 px-4 mb-2"
@@ -27,7 +40,11 @@
     formControlName="phone"
   >
 
+  <div *ngIf="form.invalid" class="text-red-500">
+    <div *ngIf="form.controls.phone.errors?.required">Phone number is required</div>
+    <div *ngIf="form.controls.phone.errors?.pattern">Phone number is invalid</div>
+  </div>
 
-  <button type="submit" class="py-2 px-4 bg-blue-700 text-white" >Submit</button>
+  <button type="submit" [disabled]="!form.valid" class="py-2 px-4 bg-blue-700 text-white  disabled:opacity-50" >Submit</button>
 
 </form>
