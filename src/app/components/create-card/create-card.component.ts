@@ -22,26 +22,28 @@ export class CreateCardComponent {
     lastName: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(2),
+      Validators.maxLength(60)
     ]),
     email: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(5),
+      Validators.email
     ]),
     phone: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(10),
+      Validators.pattern('[0-9]+')
     ]),
   });
 
   submit() {
     console.log(this.form.value);
-    this.CardService.createCard({
-      firstname: this.form.value.firstName as string,
-      lastname: this.form.value.lastName as string,
-      email: this.form.value.email as string,
-      phone: this.form.value.phone as string,
-      selected: false,
-    });
-    this.ModalService.close();
+    this.CardService.create({
+      name: `${this.form.value.firstName} ${this.form.value.lastName}`,
+      email: this.form.value.email,
+      phone: this.form.value.phone,
+    })
+      .subscribe(() => {
+        this.ModalService.close();
+      });
   }
 }

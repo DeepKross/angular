@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Card} from "./models/card";
 import {ModalService} from "./services/modal.service";
 import {CardService} from "./services/card.service";
@@ -8,7 +8,7 @@ import {CardService} from "./services/card.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
 
   constructor(public modalService: ModalService,
               public cardService: CardService,
@@ -16,9 +16,10 @@ export class AppComponent{
   }
   title = 'Angular lecture 1';
   filtration: string = '';
-  cards: Card[] = this.cardService.getAll();
+  cards: Card[] = [];
   isDesc = false;
   ascOrDesc: "asc" | "desc" = 'asc';
+  loading = false;
 
   selectAll(){
     this.cards.forEach(p => p.selected = true);
@@ -26,6 +27,14 @@ export class AppComponent{
 
   deleteSelected(){
     this.cards = this.cards.filter(p => !p.selected);
+  }
+
+  ngOnInit(){
+    this.loading = true;
+    this.cardService.getAll().subscribe(() => {
+      this.loading = false;
+    });
+
   }
 
   sort(){

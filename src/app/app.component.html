@@ -48,9 +48,11 @@
     >
   </div>
 
+  <p *ngIf="loading" class="text-center text-lg">Loading...</p>
+
   <app-card
     *ngFor="
-      let card of cards
+      let card of cardService.cards
         | filterCards : filtration
         | orderBy : 'firstname' : isDesc
     "

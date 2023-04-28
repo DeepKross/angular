@@ -9,6 +9,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { CreateCardComponent } from './components/create-card/create-card.component';
 import { SortPipe } from './pipes/sort.pipe';
 import {OrderModule} from "ngx-order-pipe";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {OrderModule} from "ngx-order-pipe";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    OrderModule
+    OrderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
